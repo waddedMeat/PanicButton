@@ -7,7 +7,7 @@ all: clean
 	$(CC) $(CFLAGS) PanicButton.cpp $(LFLAGS) -o $(EXECUTABLE)
 
 install:
-	cp $(EXECUTABLE) /usr/local/bin/panic-button
+	cp $(EXECUTABLE) /usr/local/bin/$(EXECUTABLE)
 	cp ./99_panic.rules /etc/udev/rules.d/99_panic.rules
 	udevadm control -R
 	
