@@ -6,9 +6,12 @@ using namespace std;
 
 #define VENDOR_ID   0x04f3
 #define PRODUCT_ID  0x04a0
-#define EXECUTABLE  "/etc/panic-button/panic-script"
 
-int main() {
+int main(int argc, const char** argv) {
+	if (argc < 2) {
+		cout<<"Missing argument"<<endl;
+		exit(1);
+	}
 	libusb_device_handle *dev_handle; //a device handle
 	libusb_context *ctx = NULL; //a libusb session
 
@@ -63,7 +66,7 @@ int main() {
 
 		if (r == 0 && actual_length == sizeof(data)) {
 			cout <<"Executing Script"<<endl;
-			system(EXECUTABLE);
+			system(argv[1]);
 			cout<<"Waiting..."<<endl;
 		} else {
 			cout<<"error"<<endl;
